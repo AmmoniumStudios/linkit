@@ -9,13 +9,14 @@ import java.util.concurrent.Callable;
         name = "linkit",
         description = "This is the linkit command line application",
         subcommands = {
-                Add.class
+                Add.class,
+                Delete.class
         })
 public class Linkit implements Callable<Integer> {
 
     @Override
     public Integer call() {
-        System.out.printf("Linkit Command Line App");
+        System.out.print("Linkit Command Line App");
         return 0;
     }
 }
