@@ -11,7 +11,8 @@ import java.util.concurrent.Callable;
     subcommands = {
         Add.class,
         Delete.class,
-        List.class
+        List.class,
+        Update.class
     })
 public class Linkit implements Callable<Integer> {
 
