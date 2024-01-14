@@ -12,12 +12,6 @@ import java.util.concurrent.Callable;
 public class List implements Callable<Integer> {
 
     @Option(
-        names = { "--all" },
-        description = "Option to list all the rows in the database"
-    )
-    String shortLink;
-
-    @Option(
         names = { "--id" },
         description = "The id of the database row to list"
     )
