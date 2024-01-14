@@ -1,11 +1,11 @@
 package org.ammonium.linkit.cli;
 
-import picocli.CommandLine;
+import picocli.CommandLine.Command;
 
 import java.util.concurrent.Callable;
 
 
-@CommandLine.Command(
+@Command(
     name = "linkit",
     description = "This is the linkit command line application",
     subcommands = {
