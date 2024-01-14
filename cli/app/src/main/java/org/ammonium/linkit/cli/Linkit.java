@@ -22,7 +22,7 @@ public class Linkit implements Callable<Integer> {
         names = { "-v", "--version"},
         versionHelp = true,
         description = "Version number")
-    boolean versionRequested;
+    private boolean versionRequested;
 
     @Override
     public Integer call() {

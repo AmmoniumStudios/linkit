@@ -17,23 +17,23 @@ public class Update implements Callable<Integer> {
         description = "The short link",
         required = true
     )
-    String shortLink;
+    private String shortLink;
 
     @ArgGroup(exclusive = true, multiplicity = "1")
-    Exclusive exclusive;
+    private Exclusive exclusive;
 
-    public static class Exclusive {
+    private static class Exclusive {
         @Option(
             names = { "--id" },
             description = "The id of the database row"
         )
-        String id;
+        private String id;
 
         @Option(
             names = { "--url" },
             description = "The full url of the link"
         )
-        String url;
+        private String url;
     }
 
     @Override

@@ -17,14 +17,14 @@ public class Add implements Callable<Integer> {
             description = "The short link for the database",
             defaultValue = "TODO" // TODO: Code Generator
     )
-    String shortLink;
+    private String shortLink;
 
     @Parameters(
             paramLabel = "url",
             description = "The full URL of the website",
             arity = "1"
     )
-    String url;
+    private String url;
 
     @Override
     public Integer call() {

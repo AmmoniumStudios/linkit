@@ -15,13 +15,13 @@ public class Delete implements Callable<Integer> {
         names = { "--id" },
         description = "The id for the row in the database"
     )
-    String id;
+    private String id;
 
     @Option(
         names = {"-s", "--short"},
         description = "The short key stored in the database"
     )
-    String shortLink;
+    private String shortLink;
 
     @Override
     public Integer call() {

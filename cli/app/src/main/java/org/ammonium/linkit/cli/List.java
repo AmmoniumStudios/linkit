@@ -13,20 +13,20 @@ import java.util.concurrent.Callable;
 public class List implements Callable<Integer> {
 
     @ArgGroup(exclusive = true, multiplicity = "1")
-    Update.Exclusive exclusive;
+    private Exclusive exclusive;
 
-    public static class Exclusive {
+    private static class Exclusive {
         @Option(
             names = {"--id"},
             description = "The id of the database row"
         )
-        String id;
+        private String id;
 
         @Option(
             names = {"-s", "--short"},
             description = "The short link"
         )
-        String shortLink;
+        private String shortLink;
     }
 
 
