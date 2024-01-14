@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.ammonium.linkit.model.http.ResponseWrapper;
 import org.ammonium.linkit.model.http.ShortUrlData;
+import org.ammonium.linkit.util.env.EnvUtil;
 import org.ammonium.linkit.util.json.Body;
 
 import java.net.URI;
@@ -11,8 +12,8 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
-import java.util.logging.Logger;
 
 /**
  * Utility for HTTP requests.
@@ -23,11 +24,11 @@ public final class HttpUtil {
         .setPrettyPrinting()
         .create();
 
-    private static final Logger LOGGER = Logger.getLogger("HttpUtil");
+    private static final Map<String, String> CONFIGURATION = EnvUtil.readYamlFile();
 
     private static final String CLOUDFLARE_API = "https://api.cloudflare.com/client/v4/accounts/{account_identifier}/d1/database/{database_identifier}/query"
-        .replace("{account_identifier}", "") // TODO: Use account identifier
-        .replace("{database_identifier}", ""); // TODO: Use database identifier;
+        .replace("{account_identifier}", CONFIGURATION.get("CLOUDFLARE_ACCOUNT_IDENTIFIER"))
+        .replace("{database_identifier}", CONFIGURATION.get("CLOUDFLARE_DATABASE_IDENTIFIER"));
 
     /**
      * Sends a POST request to the Cloudflare API to create a short URL.
@@ -89,7 +90,7 @@ public final class HttpUtil {
     private static HttpRequest.Builder startRequest() {
         return HttpRequest.newBuilder(URI.create(CLOUDFLARE_API))
             .headers(
-                "Authorization", "Bearer %s".formatted(""), // TODO: Add API key,
+                "Authorization", "Bearer %s".formatted(CONFIGURATION.get("CLOUDFLARE_BEARER_TOKEN")),
                 "Content-Type", "application/json"
             );
     }
