@@ -1,4 +1,4 @@
-package org.ammonium.linkit.cli.add;
+package org.ammonium.linkit.cli;
 
 import picocli.CommandLine;
 import picocli.CommandLine.Command;

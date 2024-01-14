@@ -1,6 +1,5 @@
 package org.ammonium.linkit.cli;
 
-import org.ammonium.linkit.cli.add.Add;
 import picocli.CommandLine;
 
 import java.util.concurrent.Callable;
