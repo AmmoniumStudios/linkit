@@ -26,8 +26,8 @@ public final class HttpUtil {
     private static final Logger LOGGER = Logger.getLogger("HttpUtil");
 
     private static final String CLOUDFLARE_API = "https://api.cloudflare.com/client/v4/accounts/{account_identifier}/d1/database/{database_identifier}/query"
-        .replace("{account_identifier}", "cb07f3be0ee90cb6dd44a962ff36b662")
-        .replace("{database_identifier}", "102dac3c-c596-4e6d-8eb1-3c53b5a32d1b");
+        .replace("{account_identifier}", "") // TODO: Use account identifier
+        .replace("{database_identifier}", ""); // TODO: Use database identifier;
 
     /**
      * Sends a POST request to the Cloudflare API to create a short URL.
