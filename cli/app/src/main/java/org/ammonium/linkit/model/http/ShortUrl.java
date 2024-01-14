@@ -18,4 +18,11 @@ public final class ShortUrl {
         return url;
     }
 
+    @Override
+    public String toString() {
+        return "ShortUrl{" +
+            "endPoint='" + endPoint + '\'' +
+            ", url='" + url + '\'' +
+            '}';
+    }
 }

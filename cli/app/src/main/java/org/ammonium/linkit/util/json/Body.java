@@ -4,22 +4,19 @@ import java.util.List;
 
 public class Body {
 
-    private final List<Param> parameters;
-    private final String query;
+    private final String[] params;
+    private final String sql;
 
-    public Body(List<Param> parameters, String query) {
-        this.parameters = parameters;
-        this.query = query;
+    public Body(String query, String[] params) {
+        this.params = params;
+        this.sql = query;
     }
 
-    public List<Param> getParameters() {
-        return parameters;
+    public String[] getParameters() {
+        return params;
     }
 
-
-
-    public record Param(String name, String value) {
-
+    public String getQuery() {
+        return sql;
     }
-
 }
