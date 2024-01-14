@@ -12,7 +12,7 @@ import java.util.concurrent.Callable;
 public class Delete implements Callable<Integer> {
 
     @Option(
-        names = {"-i", "--id"},
+        names = { "--id" },
         description = "The id for the row in the database"
     )
     String id;
