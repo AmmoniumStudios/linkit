@@ -43,3 +43,13 @@ application {
     // Define the main class for the application.
     mainClass.set("org.ammonium.linkit.App")
 }
+
+tasks {
+    processResources {
+        sourceSets.main {
+            resources {
+                srcDirs("src/main/resources")
+            }
+        }
+    }
+}
