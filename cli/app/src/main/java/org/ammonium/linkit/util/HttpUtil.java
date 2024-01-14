@@ -2,18 +2,17 @@ package org.ammonium.linkit.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import okhttp3.Headers;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import org.ammonium.linkit.model.http.ShortUrl;
+import org.ammonium.linkit.model.http.ResponseWrapper;
+import org.ammonium.linkit.model.http.ShortUrlData;
 import org.ammonium.linkit.util.json.Body;
+
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.logging.Logger;
 
 /**
  * Utility for HTTP requests.
@@ -27,34 +26,72 @@ public final class HttpUtil {
     private static final Logger LOGGER = Logger.getLogger("HttpUtil");
 
     private static final String CLOUDFLARE_API = "https://api.cloudflare.com/client/v4/accounts/{account_identifier}/d1/database/{database_identifier}/query"
-        .replace("{account_identifier}", System.getenv("CLOUDFLARE_ACCOUNT_IDENTIFIER"))
-        .replace("{database_identifier}", System.getenv("CLOUDFLARE_DATABASE_IDENTIFIER"));
+        .replace("{account_identifier}", "cb07f3be0ee90cb6dd44a962ff36b662")
+        .replace("{database_identifier}", "102dac3c-c596-4e6d-8eb1-3c53b5a32d1b");
 
-    private static final MediaType APPLICATION_JSON = MediaType.get("application/json");
-    private static final Headers HEADERS = Headers.of(
-        "Authorization", "Bearer %s".formatted(System.getenv("CLOUDFLARE_BEARER_TOKEN"))
-    );
+    /**
+     * Sends a POST request to the Cloudflare API to create a short URL.
+     *
+     * @param body The body of the request.
+     * @return A {@link CompletableFuture} containing the response.
+     */
+    public static CompletableFuture<HttpResponse<String>> createShort(Body body) {
+        try (HttpClient client = HttpClient.newHttpClient()) {
+            HttpRequest request = startRequest()
+                .POST(HttpRequest.BodyPublishers.ofString(GSON.toJson(body)))
+                .build();
 
-    private static final OkHttpClient HTTP_CLIENT = new OkHttpClient();
-
-    public static String shortenUrl(Body json) {
-        final RequestBody body = RequestBody.create(GSON.toJson(json), APPLICATION_JSON);
-        final Request request = new Request.Builder()
-            .url(CLOUDFLARE_API)
-            .headers(HEADERS)
-            .post(body)
-            .build();
-
-        try (Response response = HTTP_CLIENT.newCall(request).execute()) {
-            if (response.body() == null) {
-                throw new IllegalStateException("Response body is null");
-            }
-            // TODO: Read response and parse to JSON object
-        } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "Error while shortening URL", e.getMessage());
+            return client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
         }
+    }
 
-        return null;
+    /**
+     * Retrieves all short URLs from the Cloudflare API.
+     *
+     * @param body The body of the request.
+     * @return A {@link CompletableFuture} containing the response.
+     */
+    public static CompletableFuture<List<ShortUrlData>> listAllShorts(Body body) {
+        try (HttpClient client = HttpClient.newHttpClient()) {
+            HttpRequest request = startRequest()
+                .POST(HttpRequest.BodyPublishers.ofString(GSON.toJson(body)))
+                .build();
+
+            return client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenApply(response -> GSON.fromJson(response.body(), ResponseWrapper.class))
+                .thenApply(ResponseWrapper::getResult)
+                .thenApply(result -> result.getFirst().getResults());
+        }
+    }
+
+    /**
+     * Sends a DELETE request to the Cloudflare API to delete a short URL.
+     *
+     * @param body The body of the request.
+     * @return A {@link CompletableFuture} containing the response.
+     */
+    public static CompletableFuture<HttpResponse<String>> deleteShort(Body body) {
+        try (HttpClient client = HttpClient.newHttpClient()) {
+            HttpRequest request = startRequest()
+                .POST(HttpRequest.BodyPublishers.ofString(GSON.toJson(body)))
+                .build();
+
+            return client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
+        }
+    }
+
+
+    /**
+     * Starts a request to the Cloudflare API.
+     *
+     * @return A {@link HttpRequest.Builder} with the base URL and headers.
+     */
+    private static HttpRequest.Builder startRequest() {
+        return HttpRequest.newBuilder(URI.create(CLOUDFLARE_API))
+            .headers(
+                "Authorization", "Bearer %s".formatted(""), // TODO: Add API key,
+                "Content-Type", "application/json"
+            );
     }
 
     private HttpUtil() {
