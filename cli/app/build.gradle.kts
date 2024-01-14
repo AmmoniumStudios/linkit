@@ -24,6 +24,11 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.yaml/snakeyaml
     implementation("org.yaml:snakeyaml:2.2")
+
+
+    // https://mvnrepository.com/artifact/info.picocli/picocli
+    implementation("info.picocli:picocli:4.7.5")
+
     implementation("com.google.code.gson:gson:2.10.1")
 }
 
