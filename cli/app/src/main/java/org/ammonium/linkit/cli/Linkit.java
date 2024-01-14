@@ -6,12 +6,13 @@ import java.util.concurrent.Callable;
 
 
 @CommandLine.Command(
-        name = "linkit",
-        description = "This is the linkit command line application",
-        subcommands = {
-                Add.class,
-                Delete.class
-        })
+    name = "linkit",
+    description = "This is the linkit command line application",
+    subcommands = {
+        Add.class,
+        Delete.class,
+        List.class
+    })
 public class Linkit implements Callable<Integer> {
 
     @Override
