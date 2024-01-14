@@ -6,20 +6,20 @@ import picocli.CommandLine.Option;
 import java.util.concurrent.Callable;
 
 @Command(
-        name = "delete",
-        description = "The delete command will remove a url from the database"
+    name = "delete",
+    description = "The delete command will remove a url from the database"
 )
 public class Delete implements Callable<Integer> {
 
     @Option(
-            names = {"-i", "--id"},
-            description = "The id for the row in the database"
+        names = {"-i", "--id"},
+        description = "The id for the row in the database"
     )
     String id;
 
     @Option(
-            names = {"-s", "--short"},
-            description = "The short key stored in the database"
+        names = {"-s", "--short"},
+        description = "The short key stored in the database"
     )
     String shortLink;
 
