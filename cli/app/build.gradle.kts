@@ -22,8 +22,6 @@ dependencies {
     // This dependency is used by the application.
     implementation(libs.guava)
 
-    implementation("com.squareup.okhttp3:okhttp:4.12.0")
-
     // https://mvnrepository.com/artifact/org.yaml/snakeyaml
     implementation("org.yaml:snakeyaml:2.2")
     implementation("com.google.code.gson:gson:2.10.1")
