@@ -1,8 +1,10 @@
 package org.ammonium.linkit;
 
+import org.ammonium.linkit.cli.Linkit;
 import org.ammonium.linkit.util.HttpUtil;
 import org.ammonium.linkit.util.SchemaUtils;
 import org.ammonium.linkit.util.json.Body;
+import picocli.CommandLine;
 
 import java.io.InputStream;
 import java.util.List;
@@ -21,7 +23,7 @@ public final class Application {
             e.printStackTrace();
         }
 
-//        int exitCode = new CommandLine(new Linkit()).execute(args);
-//        System.exit(exitCode);
+        int exitCode = new CommandLine(new Linkit()).execute(args);
+        System.exit(exitCode);
     }
 }
