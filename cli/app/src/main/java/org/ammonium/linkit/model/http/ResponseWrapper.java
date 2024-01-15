@@ -5,8 +5,9 @@ import java.util.List;
 public class ResponseWrapper {
 
     private List<DataWrapper> result;
-    private List<Object> errors;
+    private List<Error> errors;
     private List<Object> messages;
+    private boolean success;
 
     public List<DataWrapper> getResult() {
         return result;
@@ -16,11 +17,11 @@ public class ResponseWrapper {
         this.result = result;
     }
 
-    public List<Object> getErrors() {
+    public List<Error> getErrors() {
         return errors;
     }
 
-    public void setErrors(List<Object> errors) {
+    public void setErrors(List<Error> errors) {
         this.errors = errors;
     }
 
@@ -30,5 +31,13 @@ public class ResponseWrapper {
 
     public void setMessages(List<Object> messages) {
         this.messages = messages;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 }
