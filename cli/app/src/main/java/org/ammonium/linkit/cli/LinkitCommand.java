@@ -11,12 +11,12 @@ import java.util.concurrent.Callable;
     description = "This is the linkit command line application",
     version = "0.1.0",
     subcommands = {
-        Add.class,
-        Delete.class,
-        List.class,
-        Update.class
+        AddCommand.class,
+        DeleteCommand.class,
+        ListCommand.class,
+        UpdateCommand.class
     })
-public class Linkit implements Callable<Integer> {
+public class LinkitCommand implements Callable<Integer> {
 
     @Option(
         names = { "-v", "--version"},

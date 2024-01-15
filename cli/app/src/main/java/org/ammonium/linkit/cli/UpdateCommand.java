@@ -10,7 +10,7 @@ import java.util.concurrent.Callable;
     name = "update",
     description = "Updates the short and / or url in the database"
 )
-public class Update implements Callable<Integer> {
+public class UpdateCommand implements Callable<Integer> {
 
     @Option(
         names = { "-s", "--short" },
