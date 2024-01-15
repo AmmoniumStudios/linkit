@@ -20,7 +20,7 @@ import java.util.concurrent.CompletableFuture;
  */
 public final class HttpUtil {
 
-    private static final Gson GSON = new GsonBuilder()
+    public static final Gson GSON = new GsonBuilder()
         .setPrettyPrinting()
         .create();
 
@@ -80,7 +80,6 @@ public final class HttpUtil {
             return client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
         }
     }
-
 
     /**
      * Starts a request to the Cloudflare API.

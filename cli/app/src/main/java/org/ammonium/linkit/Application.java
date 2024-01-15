@@ -1,6 +1,7 @@
 package org.ammonium.linkit;
 
 import org.ammonium.linkit.cli.Linkit;
+
 import org.ammonium.linkit.util.HttpUtil;
 import org.ammonium.linkit.util.SchemaUtils;
 import org.ammonium.linkit.util.json.Body;
@@ -22,6 +23,7 @@ public final class Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
 
         int exitCode = new CommandLine(new Linkit()).execute(args);
         System.exit(exitCode);

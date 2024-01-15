@@ -41,7 +41,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass.set("org.ammonium.linkit.App")
+    mainClass.set("org.ammonium.linkit.Application")
 }
 
 
