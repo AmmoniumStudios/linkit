@@ -43,3 +43,15 @@ application {
     // Define the main class for the application.
     mainClass.set("org.ammonium.linkit.Application")
 }
+
+
+tasks {
+    processResources {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+        sourceSets.main {
+            resources {
+                srcDirs("src/main/resources")
+            }
+        }
+    }
+}
