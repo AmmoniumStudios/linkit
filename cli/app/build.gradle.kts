@@ -44,8 +44,10 @@ application {
     mainClass.set("org.ammonium.linkit.App")
 }
 
+
 tasks {
     processResources {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
         sourceSets.main {
             resources {
                 srcDirs("src/main/resources")
