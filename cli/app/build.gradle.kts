@@ -30,6 +30,11 @@ dependencies {
     implementation("info.picocli:picocli:4.7.5")
 
     implementation("com.google.code.gson:gson:2.10.1")
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    implementation("org.slf4j:slf4j-api:2.0.11")
+    // https://mvnrepository.com/artifact/ch.qos.logback/logback-core
+    implementation("org.apache.logging.log4j:log4j-slf4j2-impl:2.20.0")
+
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
