@@ -1,13 +1,14 @@
 package org.ammonium.linkit.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Utility class for creating a schema from a given input stream.
@@ -17,7 +18,7 @@ public final class SchemaUtils {
     /**
      *  The logger for this class.
      */
-    private static final Logger LOGGER = Logger.getLogger("SchemaUtils");
+    private static final Logger LOGGER = LoggerFactory.getLogger("SchemaUtils");
 
     /**
      * Creates a list of queries from a given input stream.
@@ -41,7 +42,7 @@ public final class SchemaUtils {
                 }
             }
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "An error occurred while trying to parse the schema file.", e.getMessage());
+            LOGGER.error("An error occurred while trying to parse the schema file. {}", e.getMessage());
         }
         return queries;
     }
