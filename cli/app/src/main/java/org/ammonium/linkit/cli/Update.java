@@ -22,6 +22,12 @@ public class Update implements Callable<Integer> {
     @ArgGroup(exclusive = true, multiplicity = "1")
     private Exclusive exclusive;
 
+    @Override
+    public Integer call() {
+        System.out.println("Update command coming soon");
+        return 0;
+    }
+
     private static class Exclusive {
         @Option(
             names = {"--id"},
@@ -36,9 +42,4 @@ public class Update implements Callable<Integer> {
         private String url;
     }
 
-    @Override
-    public Integer call() {
-        System.out.println("Update command coming soon");
-        return 0;
-    }
 }
