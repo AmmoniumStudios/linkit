@@ -37,7 +37,7 @@ public class ListCommand implements Callable<Integer> {
             names = {"--id"},
             description = "The id of the database row"
         )
-        private String id;
+        private int id;
 
         @Option(
             names = {"-s", "--short"},
@@ -55,9 +55,9 @@ public class ListCommand implements Callable<Integer> {
         if (exclusive == null) {
             query = LIST_ALL;
             parameter = "";
-        } else if (exclusive.id != null) {
+        } else if (exclusive.id != 0) {
             query = LIST_BY_ID;
-            parameter = exclusive.id;
+            parameter = String.valueOf(exclusive.id);
         } else {
             query = LIST_BY_SHORT;
             parameter = exclusive.shortLink;
