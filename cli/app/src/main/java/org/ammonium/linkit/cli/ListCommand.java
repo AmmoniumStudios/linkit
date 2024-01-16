@@ -48,8 +48,6 @@ public class ListCommand implements Callable<Integer> {
 
     @Override
     public Integer call() {
-        System.out.println("Listing links");
-
         String query, parameter;
 
         if (exclusive == null) {
@@ -71,6 +69,13 @@ public class ListCommand implements Callable<Integer> {
                 if (wrapper.isSuccess()) {
 
                     final List<ShortUrlData> data = wrapper.getResult().getFirst().getResults();
+
+                    if (data.isEmpty()) {
+                        System.out.println("No links found in database");
+                        return;
+                    }
+
+                    System.out.println("Listing links");
 
                     List<String> headers = List.of("ID", "Short", "URL");
                     List<List<String>> formattedData = new ArrayList<>();
