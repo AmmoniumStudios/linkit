@@ -15,7 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
     name = "update",
     description = "Updates the short and / or url in the database"
 )
-public class Update implements Callable<Integer> {
+public class UpdateCommand implements Callable<Integer> {
 
     private static final String UPDATE_SHORT_ID = "UPDATE links SET short = ? WHERE id = ?";
     private static final String UPDATE_URL_BY_SHORT = "UPDATE links SET url = ? WHERE short = ?";

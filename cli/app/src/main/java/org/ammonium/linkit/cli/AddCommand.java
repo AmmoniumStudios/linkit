@@ -17,7 +17,7 @@ import java.util.logging.Logger;
     name = "add",
     description = "Add command"
 )
-public class Add implements Callable<Integer> {
+public class AddCommand implements Callable<Integer> {
 
     private static final String INSERT = "INSERT INTO 'links' ('short', 'url') VALUES (?, ?);";
 
