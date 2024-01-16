@@ -8,6 +8,7 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    id("org.panteleyev.jpackageplugin") version "1.6.0"
 }
 
 repositories {
@@ -52,6 +53,24 @@ tasks {
             resources {
                 srcDirs("src/main/resources")
             }
+        }
+    }
+    jpackage {
+        dependsOn("build", "copyDependencies", "copyJar")
+
+        input = "$buildDir/jars"
+        destination = "$buildDir/dist"
+
+        appName = "Non-Modular Application"
+        vendor = "app.org"
+
+        mainJar = jar.get().archiveFileName.get()
+        mainClass = "org.app.MainClass"
+
+        javaOptions = listOf("-Dfile.encoding=UTF-8")
+
+        windows {
+            winConsole = true
         }
     }
 }
