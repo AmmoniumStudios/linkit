@@ -1,8 +1,8 @@
 package org.ammonium.linkit.cli;
 
 import picocli.CommandLine.ArgGroup;
-import picocli.CommandLine.Option;
 import picocli.CommandLine.Command;
+import picocli.CommandLine.Option;
 
 import java.util.concurrent.Callable;
 
@@ -13,7 +13,7 @@ import java.util.concurrent.Callable;
 public class Update implements Callable<Integer> {
 
     @Option(
-        names = { "-s", "--short" },
+        names = {"-s", "--short"},
         description = "The short link",
         required = true
     )
@@ -24,13 +24,13 @@ public class Update implements Callable<Integer> {
 
     private static class Exclusive {
         @Option(
-            names = { "--id" },
+            names = {"--id"},
             description = "The id of the database row"
         )
         private String id;
 
         @Option(
-            names = { "--url" },
+            names = {"--url"},
             description = "The full url of the link"
         )
         private String url;
