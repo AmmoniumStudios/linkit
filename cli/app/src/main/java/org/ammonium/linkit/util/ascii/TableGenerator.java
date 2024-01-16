@@ -17,7 +17,6 @@ public final class TableGenerator {
         int[] maxWidths = getMaxWidth(headers, data);
 
         StringBuilder builder = new StringBuilder();
-
         builder.append(addNewLine(headers, maxWidths));
         builder.append(createRule(maxWidths));
 
@@ -55,12 +54,12 @@ public final class TableGenerator {
             maxWidth[i] = headers.get(i).length();
         }
 
-        for (List<String> datum : data) {
+        for (List<String> row : data) {
 
-            for (int j = 0; j < data.get(1).size(); j++) {
+            for (int j = 0; j < row.size(); j++) {
 
-                if (datum.get(j).length() > maxWidth[j])
-                    maxWidth[j] = datum.get(j).length();
+                if (row.get(j).length() > maxWidth[j])
+                    maxWidth[j] = row.get(j).length();
             }
         }
 
