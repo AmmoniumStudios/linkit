@@ -29,8 +29,6 @@ public class ShortUrlData {
 
     @Override
     public String toString() {
-        return "id = " + id + "\n" +
-            "shortUrl = " + shortUrl + "\n" +
-            "url = " + url + "\n";
+        return String.format("%s,%s,%s", id, shortUrl, url);
     }
 }
